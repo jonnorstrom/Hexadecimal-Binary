@@ -12,32 +12,30 @@ class App extends Component {
     }
   }
 
-  handleBinaryInputChange(e) {
-    let newTotal = "" + e.target.value;
-    let newDecimal = parseInt(newTotal, 2)
-    let newHex = parseInt(newTotal, 2).toString(16)
-    this.setState({
-      binary: newTotal,
-      hex: newHex,
-      decimal: newDecimal
-    })
-  }
+  handleInputChange(e) {
+    let value = "" + e.target.value
+    let type = e.target.id.substr(0, e.target.id.length - 6)
+    var newBinary, newDecimal, newHex
+    switch (type) {
+      case "Binary":
+        newBinary = value
+        newDecimal = parseInt(newBinary, 2)
+        newHex = newDecimal.toString(16)
+        break;
+      case "Hex":
+        newHex = value
+        newBinary = parseInt(newHex, 16).toString(2)
+        newDecimal = parseInt(newBinary, 2)
+        break;
+      case "Decimal":
+        newDecimal = parseInt(value, 0)
+        newBinary = newDecimal.toString(2)
+        newHex = parseInt(newBinary, 2).toString(16)
+        break;
+      default:
 
-  handleDecimalInputChange(e) {
-    let newDecimal = "" + e.target.value
-    let newTotal = newDecimal.toString(2)
-    let newHex = parseInt(newTotal, 2).toString(16)
-    this.setState({
-      binary: newTotal,
-      hex: newHex,
-      decimal: newDecimal
-    })
-  }
-
-  handleHexInputChange(e) {
-    let newHex = "" + e.target.value;
-    let newBinary = parseInt(newHex, 16).toString(2)
-    let newDecimal = parseInt(newBinary, 2)
+        break;
+    }
     this.setState({
       binary: newBinary,
       hex: newHex,
@@ -62,9 +60,7 @@ class App extends Component {
           binary={binary}
           decimal={decimal}
           hex={hex}
-          onBinaryChange={this.handleBinaryInputChange.bind(this)}
-          onDecimalChange={this.handleDecimalInputChange.bind(this)}
-          onHexChange={this.handleHexInputChange.bind(this)}
+          onChange={this.handleInputChange.bind(this)}
         />
 
         <div className="hexcolorbox" style={{background: "#"+hex}}>
