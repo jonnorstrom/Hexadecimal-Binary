@@ -1,18 +1,12 @@
 import React from 'react';
+import ValueInput from './ValueInput'
 
-function BinaryHexInput({binary, onBinaryChange, hex, onHexChange}) {
+function BinaryHexInput({binary, hex, onChange, decimal}) {
   return (
     <div>
-      <form>
-        <label>
-          Hex: &nbsp;#
-          <input id="hex-input" autoFocus type="text" value={hex} onChange={onHexChange}/>
-        </label>
-        <label>
-          Binary: &nbsp;
-          <textarea id="bin-input" type="text" value={binary} onChange={onBinaryChange}/>
-        </label>
-      </form>
+      <ValueInput value={binary} onChange={onChange} type={'Binary'}/>
+      <ValueInput value={hex} onChange={onChange} type={'Hex'}/>
+      <ValueInput value={decimal} onChange={onChange} type={'Decimal'}/>
     </div>
   )
 }
