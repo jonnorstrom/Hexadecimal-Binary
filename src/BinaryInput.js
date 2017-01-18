@@ -1,6 +1,6 @@
 import React from 'react';
 
-function BinaryHexInput({binary, onBinaryChange, hex, onHexChange}) {
+function BinaryHexInput({binary, onBinaryChange, hex, onHexChange, decimal, onDecimalChange}) {
   return (
     <div>
       <form>
@@ -11,6 +11,10 @@ function BinaryHexInput({binary, onBinaryChange, hex, onHexChange}) {
         <label>
           Binary: &nbsp;
           <textarea id="bin-input" type="text" value={binary} onChange={onBinaryChange}/>
+        </label>
+        <label>
+          Decimal: &nbsp;#
+          <input id="dec-input" autoFocus type="text" value={decimal} onChange={onDecimalChange}/>
         </label>
       </form>
     </div>

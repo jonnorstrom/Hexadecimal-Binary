@@ -35,7 +35,7 @@ input[type="text"], textarea[type="text"] {
   border: none;
 }
 
-#hex-input {
+#hex-input, #dec-input {
   font-size: 24px;
   position: relative;
   top: 2px;
